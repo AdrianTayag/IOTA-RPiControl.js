@@ -1,0 +1,26 @@
+{
+  "name": "iota-rpicontrol",
+  "version": "1.0.0",
+  "description": "Relay Control and Power Usage Monitoring using IOTA mam.client.js",
+  "main": "trial.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdrianTayag/IOTA-RPiControl.js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdrianTayag/IOTA-RPiControl.js/issues"
+  },
+  "homepage": "https://github.com/AdrianTayag/IOTA-RPiControl.js#readme",
+  "dependencies": {
+    "@iota/core": "^1.0.0-beta.16",
+    "@iota/mam": "^0.7.2"
+  }
+}
