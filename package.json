@@ -1,0 +1,25 @@
+{
+  "name": "iota-rpicontrol",
+  "version": "1.0.0",
+  "description": "PoC for evaluating the latency of  an IOTA based microgrid management system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdrianTayag/IOTA-RPiControl.js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdrianTayag/IOTA-RPiControl.js/issues"
+  },
+  "homepage": "https://github.com/AdrianTayag/IOTA-RPiControl.js#readme",
+  "dependencies": {
+    "@iota/converter": "^1.0.0-beta.21",
+    "@iota/mam": "^0.7.3",
+    "ina219": "^0.6.2",
+    "onoff": "^4.1.3"
+  }
+}
