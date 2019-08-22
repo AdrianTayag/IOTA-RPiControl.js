@@ -58,6 +58,7 @@ MS1t.watch((err, value) => {
       var command
       result.messages.forEach(message => command =  JSON.parse(trytesToAscii(message)))
       console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`);
+      console.log(new Date()).toLocaleString())
     })
 })
 MS2t.watch((err, value) => {
