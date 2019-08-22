@@ -1,4 +1,4 @@
-let SC = require ("./SourceController.js")
+let SC = require ("./disablepermit.js")
 
 const Gpio = require('onoff').Gpio
 const MS1t = new Gpio(14, 'in', 'rising', {debounceTimeout: 10})
