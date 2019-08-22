@@ -47,6 +47,7 @@ MS1t.watch((err, value) => {
   if (err) {
     throw err
   }
+  console.log("ms1t pressed")
   trig = 1
   publishAll()
     .then(async root => {
@@ -60,6 +61,7 @@ MS2t.watch((err, value) => {
   if (err) {
     throw err
   }
+  console.log("ms2t pressed")
   trig = 2
   publishAll()
     .then(async root => {
@@ -73,6 +75,7 @@ MS3t.watch((err, value) => {
   if (err) {
     throw err
   }
+  console.log("ms3t pressed")
   trig = 3
   publishAll()
     .then(async root => {

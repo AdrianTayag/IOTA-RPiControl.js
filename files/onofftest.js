@@ -1,6 +1,6 @@
 const Gpio = require('onoff').Gpio;
 const led = new Gpio(26, 'out');
-const button = new Gpio(19, 'in', 'both');
+const button = new Gpio(14, 'in', 'rising', {debounceTimeout: 10});
 
 button.watch((err, value) => {
   if (err) {

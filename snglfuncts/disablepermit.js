@@ -24,11 +24,11 @@ const status = function() {
 
   var stats = {
     message: 'Protection Coordinator Report',
-    timestamp: (new Date()).toLocaleString()
+    timestamp: (new Date()).toLocaleString(),
     'MS Breakers': {
-      'MS-1': b1
-      'MS-2': b2
-      'MS-3': b3
+      'MS-1': b1,
+      'MS-2': b2,
+      'MS-3': b3,
     }
   }
   console.log(stats)
