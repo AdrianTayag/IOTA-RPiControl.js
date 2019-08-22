@@ -1,5 +1,3 @@
-//WIP: onoff function for commands, islanding and disable/enable MS
-//WIP: fetching from other scripts, protecc status and SC status, timelooping
 let Protecc = require ("./Protecc.js")
 let SC = require ("./SourceController.js")
 

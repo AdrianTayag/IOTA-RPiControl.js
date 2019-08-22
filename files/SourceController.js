@@ -1,6 +1,4 @@
 //Node.js GPIO Script for Protection Manager, not needed to be concurrently run.
-//WIP:
-
 const Gpio = require('onoff').Gpio
 const ina219_1 = require('ina219')
 const ina219_2 = require('ina219')

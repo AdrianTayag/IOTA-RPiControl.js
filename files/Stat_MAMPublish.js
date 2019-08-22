@@ -1,4 +1,3 @@
-//WIP:
 let Protecc = require ("./Protecc.js")
 let SC = require ("./SourceController.js")
 
