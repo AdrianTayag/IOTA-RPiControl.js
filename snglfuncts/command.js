@@ -38,7 +38,8 @@ const publishAll = async () => {
 const logData = data => {
   if (trig == 4){
     Protecc.Island()
-  }  else{
+  }
+  else {
     SC.trigger(trig) //use fetched data, not stored variable
     SC.status()
   }
@@ -52,6 +53,7 @@ MS1t.watch((err, value) => {
   trig = 1
   publishAll()
     .then(async root => {
+      console.log("fetching...")
       const result = await Mam.fetch(root, mode, null, logData)
       var command
       result.messages.forEach(message => command =  JSON.parse(trytesToAscii(message)))

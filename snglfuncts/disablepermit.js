@@ -8,6 +8,7 @@ var b1, b2, b3
 
 //triggers called MS relay, input is 1 2 3
 const trigger = function(x){
+  console.log(x)
   if (x.readSync() = 1){
     x.writeSync(0)
   }
@@ -18,6 +19,7 @@ const trigger = function(x){
 
 //measures MS outputs
 const status = function() {
+  console.log("reporting")
   b1 = ms1.readSync()
   b2 = ms2.readSync()
   b3 = ms3.readSync()
