@@ -1,9 +1,9 @@
 let SC = require ("./disablepermit.js")
 
 const Gpio = require('onoff').Gpio
-const MS1t = new Gpio(14, 'in', 'rising', {debounceTimeout: 10})
-const MS2t = new Gpio(15, 'in', 'rising', {debounceTimeout: 10})
-const MS3t = new Gpio(18, 'in', 'rising', {debounceTimeout: 10})
+const MS1t = new Gpio(14, 'in', 'both')
+const MS2t = new Gpio(15, 'in', 'both')
+const MS3t = new Gpio(18, 'in', 'both')
 var trig
 
 const Mam = require('../lib/mam.client.js')
@@ -40,6 +40,7 @@ const logData = data => {
     Protecc.Island()
   }  else{
     SC.trigger(trig) //use fetched data, not stored variable
+    SC.status()
   }
 }
 

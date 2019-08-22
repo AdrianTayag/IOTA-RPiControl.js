@@ -8,11 +8,11 @@ var b1, b2, b3
 
 //triggers called MS relay, input is 1 2 3
 const trigger = function(x){
-  if (x.readSync() = 0){
-    x.writeSync(1)
+  if (x.readSync() = 1){
+    x.writeSync(0)
   }
   else {
-    x.writeSync(0)
+    x.writeSync(1)
   }
 }
 
