@@ -1,9 +1,11 @@
 let SC = require ("./disablepermit.js")
+let Protecc = require ("./faultisland.js")
 
 const Gpio = require('onoff').Gpio
 const MS1t = new Gpio(14, 'in', 'both')
 const MS2t = new Gpio(15, 'in', 'both')
 const MS3t = new Gpio(18, 'in', 'both')
+const ISL = new Gpio(23, 'in', 'both')
 var trig
 
 const Mam = require('../lib/mam.client.js')
@@ -81,6 +83,21 @@ MS3t.watch((err, value) => {
   }
   console.log("ms3t pressed")
   trig = 3
+  publishAll()
+    .then(async root => {
+      const result = await Mam.fetch(root, mode, null, logData)
+      var command
+      result.messages.forEach(message => command =  JSON.parse(trytesToAscii(message)))
+      console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`);
+    })
+})
+
+ISL.watch((err, value) => {
+  if (err) {
+    throw err
+  }
+  console.log("ISL pressed")
+  trig = 4 * value
   publishAll()
     .then(async root => {
       const result = await Mam.fetch(root, mode, null, logData)
