@@ -28,8 +28,9 @@ const publish = async packet => {
 }
 
 const publishAll = async () => {
+  console.log('Publishing to IOTA...')
   const root = await publish({
-    message: 'Microsource toggled',
+    message: 'Microsource toggled / Islanding toggled',
     timestamp: (new Date()).toLocaleString(),
     'remark': trig  //insert variable depending on commands
   })
@@ -38,7 +39,7 @@ const publishAll = async () => {
 
 //callback
 const logData = data => {
-  if (trig == 4){
+  if (trig > 3){
     Protecc.Island()
   }
   else {
@@ -101,6 +102,7 @@ ISL.watch((err, value) => {
   trig = 4
   publishAll()
     .then(async root => {
+      console.log("fetching...")
       const result = await Mam.fetch(root, mode, null, logData)
       var command
       result.messages.forEach(message => command =  JSON.parse(trytesToAscii(message)))
