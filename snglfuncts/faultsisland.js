@@ -17,8 +17,8 @@ const PCstatus = function() {
   sd1 = SD.readSync()
   var stats = {
     message: 'Protection Coordinator Report',
-    timestamp: (new Date()).toLocaleString()
-    SAFETY: {
+    timestamp: (new Date()).toLocaleString(),
+    'SAFETY': {
       'B1': br1,
     },
     'PCC': pcc1,
@@ -30,21 +30,21 @@ const PCstatus = function() {
 
 //Islanding/Connecting Function
 const Island = function(x) {
-  SD.writeSync(!x)
+  SD.writeSync(x)
 }
 
 ISL.watch((err,value) =>{
   if (err) {
     throw err
   }
-  SD.writeSync(!value)
+  SD.writeSync(value)
 })
 //Fault Watcher
 Z1.watch((err, value) => {
   if (err) {
     throw err
   }
-  PCC.writeSync(!value)
+  PCC.writeSync(value)
   Island(value)
 })
 
@@ -52,8 +52,8 @@ Z2.watch((err, value) => {
   if (err) {
     throw err
   }
-  SD.writeSync(!value)
-  B1.writeSync(!value)
+  SD.writeSync(value)
+  B1.writeSync(value)
 })
 
 module.exports = {
