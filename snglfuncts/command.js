@@ -1,5 +1,5 @@
-let SC = require ("./disablepermit.js")
-let Protecc = require ("./faultsisland.js")
+let SC = require ('./disablepermit.js')
+let Protecc = require ('./faultsisland.js')
 
 const Gpio = require('onoff').Gpio
 /*const MS1t = new Gpio(14, 'in', 'both')
@@ -56,11 +56,11 @@ MS1t.watch((err, value) => {
   if (err) {
     throw err
   }
-  console.log("ms1t pressed")
+  console.log('ms1t pressed')
   trig = 1
   publishAll()
     .then(async root => {
-      console.log("fetching...")
+      console.log('fetching...')
       const result = await Mam.fetch(root, mode, null, logData)
       var command
       result.messages.forEach(message => command =  JSON.parse(trytesToAscii(message)))
@@ -73,11 +73,11 @@ MS2t.watch((err, value) => {
   if (err) {
     throw err
   }
-  console.log("ms2t pressed")
+  console.log('ms2t pressed')
   trig = 2
   publishAll()
     .then(async root => {
-      console.log("fetching...")
+      console.log('fetching...')
       const result = await Mam.fetch(root, mode, null, logData)
       var command
       result.messages.forEach(message => command =  JSON.parse(trytesToAscii(message)))
@@ -90,11 +90,11 @@ MS3t.watch((err, value) => {
   if (err) {
     throw err
   }
-  console.log("ms3t pressed")
+  console.log('ms3t pressed')
   trig = 3
   publishAll()
     .then(async root => {
-      console.log("fetching...")
+      console.log('fetching...')
       const result = await Mam.fetch(root, mode, null, logData)
       var command
       result.messages.forEach(message => command =  JSON.parse(trytesToAscii(message)))
@@ -108,11 +108,11 @@ ISL.watch((err, value) => {
   if (err) {
     throw err
   }
-  console.log("ISL pressed")
+  console.log('ISL pressed')
   trig = 4
   publishAll()
     .then(async root => {
-      console.log("fetching...")
+      console.log('fetching...')
       const result = await Mam.fetch(root, mode, null, logData)
       var command
       result.messages.forEach(message => command =  JSON.parse(trytesToAscii(message)))
