@@ -11,7 +11,7 @@ var trig
 const Mam = require('../lib/mam.client.js')
 const { asciiToTrytes, trytesToAscii } = require('@iota/converter')
 const mode = 'public'
-const provider = 'https://nodes.devnet.iota.org'
+const provider = 'https://nodes.devnet.thetangle.org:443'
 const mamExplorerLink = `https://mam-explorer.firebaseapp.com/?provider=${encodeURIComponent(provider)}&mode=${mode}&root=`
 
 // Initialise MAM State
