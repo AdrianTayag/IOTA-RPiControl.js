@@ -98,12 +98,13 @@ ISL.watch((err, value) => {
     throw err
   }
   console.log("ISL pressed")
-  trig = 4 * value
+  trig = 4
   publishAll()
     .then(async root => {
       const result = await Mam.fetch(root, mode, null, logData)
       var command
       result.messages.forEach(message => command =  JSON.parse(trytesToAscii(message)))
       console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`);
+      console.log(new Date()).toLocaleString()
     })
 })
