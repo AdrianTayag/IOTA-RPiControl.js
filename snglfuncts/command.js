@@ -43,7 +43,7 @@ const publishAll = async () => {
 
 //callback
 const logData = data => {
-  if (trig > 3){
+  if (trig == 4){
     Protecc.Island()
   }
   else {
