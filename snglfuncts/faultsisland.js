@@ -37,6 +37,7 @@ ISL.watch((err,value) =>{
   if (err) {
     throw err
   }
+  console.log("ISL Pressed.")
   SD.writeSync(value)
 })
 //Fault Watcher
@@ -44,6 +45,7 @@ Z1.watch((err, value) => {
   if (err) {
     throw err
   }
+  console.log("Z1 Pressed.")
   PCC.writeSync(value)
   Island(value)
 })
@@ -52,6 +54,7 @@ Z2.watch((err, value) => {
   if (err) {
     throw err
   }
+  console.log("Z2 Pressed.")
   SD.writeSync(value)
   B1.writeSync(value)
 })
