@@ -18,6 +18,7 @@ const mamExplorerLink = `https://mam-explorer.firebaseapp.com/?provider=${encode
 let mamState = Mam.init(provider)
 // Publish to tangle
 const publish = async packet => {
+    console.log('.....')
     const trytes = asciiToTrytes(JSON.stringify(packet))
     const message = Mam.create(mamState, trytes)
     mamState = message.state
