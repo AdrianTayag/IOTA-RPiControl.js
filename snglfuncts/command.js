@@ -1,10 +1,10 @@
 let SC = require ("./disablepermit.js")
-let Protecc = require ("./faultisland.js")
+let Protecc = require ("./faultsisland.js")
 
 const Gpio = require('onoff').Gpio
-const MS1t = new Gpio(14, 'in', 'both')
+/*const MS1t = new Gpio(14, 'in', 'both')
 const MS2t = new Gpio(15, 'in', 'both')
-const MS3t = new Gpio(18, 'in', 'both')
+const MS3t = new Gpio(18, 'in', 'both')*/
 const ISL = new Gpio(23, 'in', 'both')
 var trig
 
@@ -46,7 +46,7 @@ const logData = data => {
     SC.status()
   }
 }
-
+/*
 MS1t.watch((err, value) => {
   if (err) {
     throw err
@@ -91,6 +91,7 @@ MS3t.watch((err, value) => {
       console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`);
     })
 })
+*/
 
 ISL.watch((err, value) => {
   if (err) {
