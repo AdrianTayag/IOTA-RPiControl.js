@@ -5,7 +5,7 @@ const Gpio = require('onoff').Gpio
 /*const MS1t = new Gpio(14, 'in', 'both')
 const MS2t = new Gpio(15, 'in', 'both')
 const MS3t = new Gpio(18, 'in', 'both')*/
-const ISL = new Gpio(23, 'in', 'both')
+const island = new Gpio(23, 'in', 'both')
 var trig
 
 const Mam = require('../lib/mam.client.js')
@@ -25,7 +25,7 @@ const publish = async packet => {
     console.log('..')
     mamState = message.state
     console.log('.')
-    await Mam.attach(message.payload, message.address)
+    await Mam.attach(message.payload, message.address, 3, 9)
     console.log('Published at ', Date().toLocaleString(), packet, '\n')
     console.log('Root: ', message.root, '\n')
     return message.root
@@ -36,7 +36,7 @@ const publishAll = async () => {
   const root = await publish({
     message: 'Microsource toggled / Islanding toggled',
     timestamp: (new Date()).toLocaleString(),
-    'remark': trig,  //insert variable depending on commands
+    'remark': trig  //insert variable depending on commands
   })
   return root
 }
@@ -104,11 +104,11 @@ MS3t.watch((err, value) => {
 })
 */
 
-ISL.watch((err, value) => {
+island.watch((err, value) => {
   if (err) {
     throw err
   }
-  console.log('ISL pressed')
+  console.log('Island pressed')
   trig = 4
   publishAll()
     .then(async root => {
