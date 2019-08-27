@@ -25,9 +25,9 @@ const publish = async packet => {
     console.log('..')
     mamState = message.state
     console.log('.')
-    await Mam.attach(message.payload, message.address, 3, 9)
-    console.log('Published at ', Date().toLocaleString(), packet, '\n');
-    console.log('Root: ', message.root, '\n');
+    await Mam.attach(message.payload, message.address)
+    console.log('Published at ', Date().toLocaleString(), packet, '\n')
+    console.log('Root: ', message.root, '\n')
     return message.root
 }
 
@@ -64,10 +64,11 @@ MS1t.watch((err, value) => {
       const result = await Mam.fetch(root, mode, null, logData)
       var command
       result.messages.forEach(message => command =  JSON.parse(trytesToAscii(message)))
-      console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`);
+      console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`)
       console.log(new Date()).toLocaleString()
     })
 })
+
 MS2t.watch((err, value) => {
   if (err) {
     throw err
@@ -76,12 +77,15 @@ MS2t.watch((err, value) => {
   trig = 2
   publishAll()
     .then(async root => {
+      console.log("fetching...")
       const result = await Mam.fetch(root, mode, null, logData)
       var command
       result.messages.forEach(message => command =  JSON.parse(trytesToAscii(message)))
-      console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`);
+      console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`)
+      console.log(new Date()).toLocaleString()
     })
 })
+
 MS3t.watch((err, value) => {
   if (err) {
     throw err
@@ -90,10 +94,12 @@ MS3t.watch((err, value) => {
   trig = 3
   publishAll()
     .then(async root => {
+      console.log("fetching...")
       const result = await Mam.fetch(root, mode, null, logData)
       var command
       result.messages.forEach(message => command =  JSON.parse(trytesToAscii(message)))
-      console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`);
+      console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`)
+      console.log(new Date()).toLocaleString()
     })
 })
 */
@@ -110,7 +116,7 @@ ISL.watch((err, value) => {
       const result = await Mam.fetch(root, mode, null, logData)
       var command
       result.messages.forEach(message => command =  JSON.parse(trytesToAscii(message)))
-      console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`);
+      console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`)
       console.log(new Date()).toLocaleString()
     })
 })
