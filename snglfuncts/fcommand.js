@@ -6,6 +6,9 @@ const Gpio = require('onoff').Gpio
 const MS2t = new Gpio(15, 'in', 'both')
 const MS3t = new Gpio(18, 'in', 'both')*/
 const island = new Gpio(23, 'in', 'both')
+
+const SD = new Gpio(10, 'out')
+
 var trig
 
 const Mam = require('../lib/mam.client.js')
@@ -44,7 +47,8 @@ const publishAll = async () => {
 //callback
 const logData = data => {
   if (trig == 4){
-    Protecc.Island()
+    SD.writeSync(1)
+    //Protecc.Island()
   }
   else {
     SC.trigger(trig) //use fetched data, not stored variable
