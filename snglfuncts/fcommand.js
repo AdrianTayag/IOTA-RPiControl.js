@@ -1,5 +1,5 @@
 let SC = require ('./disablepermit.js')
-let Protecc = require ('./faultsisland.js')
+let Protecc = require ('./faults.js')
 
 const Gpio = require('onoff').Gpio
 /*const MS1t = new Gpio(14, 'in', 'both')
