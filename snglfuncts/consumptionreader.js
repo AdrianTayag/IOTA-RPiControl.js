@@ -5,8 +5,11 @@ var i = 1
 var x, y
 while (i == 1) {
   ina219.getBusVoltage_V(respondV)
+  setTimeout(power, 1000)
+}
+
+const power() {
   ina219.getCurrent_mA(respondA)
-  await sleep(5000)
 }
 
 async function respondV (voltage) {
@@ -16,10 +19,4 @@ async function respondV (voltage) {
 async function respondA (current) {
   y = current * x //milliwatts
   console.log(y)
-}
-
-function sleep(ms){
-    return new Promise(resolve=>{
-        setTimeout(resolve,ms)
-    })
 }
