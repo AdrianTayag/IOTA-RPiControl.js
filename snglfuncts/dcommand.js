@@ -1,5 +1,4 @@
 let SC = require ('./disablepermit.js')
-let Protecc = require ('./faults.js')
 
 const Gpio = require('onoff').Gpio
 const MS1t = new Gpio(14, 'in', 'both')
@@ -18,15 +17,11 @@ const mamExplorerLink = `https://mam-explorer.firebaseapp.com/?provider=${encode
 let mamState = Mam.init(provider)
 // Publish to tangle
 const publish = async packet => {
-    console.log('....')
     const trytes = asciiToTrytes(JSON.stringify(packet))
-    console.log('...')
     const message = Mam.create(mamState, trytes)
-    console.log('..')
     mamState = message.state
-    console.log('.')
     await Mam.attach(message.payload, message.address, 3, 9)
-    console.log('Published at ', Date().toLocaleString(), packet, '\n')
+    console.log('Published at ', Date(hour, minute, second, millisecond).toLocaleString(), packet, '\n')
     console.log('Root: ', message.root, '\n')
     return message.root
 }
@@ -35,7 +30,7 @@ const publishAll = async () => {
   console.log('Publishing to IOTA...')
   const root = await publish({
     message: 'Microsource toggled / Islanding toggled',
-    timestamp: (new Date()).toLocaleString(),
+    timestamp: (new Date(hour, minute, second, millisecond)).toLocaleString(),
     'remark': trig  //insert variable depending on commands
   })
   return root
@@ -44,7 +39,6 @@ const publishAll = async () => {
 //callback
 const logData = data => {
   if (trig == 4){
-    Protecc.Island()
   }
   else {
     SC.trigger(trig) //use fetched data, not stored variable
@@ -56,7 +50,7 @@ MS1t.watch((err, value) => {
   if (err) {
     throw err
   }
-  console.log('ms1t pressed')
+  console.log('ms1t pressed at ,' Date(hour, minute, second, millisecond).toLocaleString())
   trig = 1
   publishAll()
     .then(async root => {
@@ -65,7 +59,7 @@ MS1t.watch((err, value) => {
       var command
       result.messages.forEach(message => command =  JSON.parse(trytesToAscii(message)))
       console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`)
-      console.log(new Date()).toLocaleString()
+      console.log('fetched at ', new Date(hour, minute, second, millisecond).toLocaleString())
     })
 })
 
@@ -82,7 +76,7 @@ MS2t.watch((err, value) => {
       var command
       result.messages.forEach(message => command =  JSON.parse(trytesToAscii(message)))
       console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`)
-      console.log(new Date()).toLocaleString()
+      console.log('fetched at ', new Date(hour, minute, second, millisecond).toLocaleString())
     })
 })
 
@@ -99,25 +93,6 @@ MS3t.watch((err, value) => {
       var command
       result.messages.forEach(message => command =  JSON.parse(trytesToAscii(message)))
       console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`)
-      console.log(new Date()).toLocaleString()
+      console.log('fetched at ', new Date(hour, minute, second, millisecond).toLocaleString())
     })
 })
-
-/*
-island.watch((err, value) => {
-  if (err) {
-    throw err
-  }
-  console.log('Island pressed')
-  trig = 4
-  publishAll()
-    .then(async root => {
-      console.log('fetching...')
-      const result = await Mam.fetch(root, mode, null, logData)
-      var command
-      result.messages.forEach(message => command =  JSON.parse(trytesToAscii(message)))
-      console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`)
-      console.log(new Date()).toLocaleString()
-    })
-})
-*/
