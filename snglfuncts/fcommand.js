@@ -1,8 +1,8 @@
 const Gpio = require('onoff').Gpio
 const island = new Gpio(23, 'in', 'both')
-const sd = new Gpio(10, 'out')
+const SD = new Gpio(10, 'out')
+
 var trig
-sd.writeSync(1)
 
 const Mam = require('../lib/mam.client.js')
 const { asciiToTrytes, trytesToAscii } = require('@iota/converter')
@@ -14,21 +14,24 @@ const mamExplorerLink = `https://mam-explorer.firebaseapp.com/?provider=${encode
 let mamState = Mam.init(provider)
 // Publish to tangle
 const publish = async packet => {
-  console.log('.....')
-  const trytes = asciiToTrytes(JSON.stringify(packet))
-  const message = Mam.create(mamState, trytes)
-  mamState = message.state
-  await Mam.attach(message.payload, message.address, 3, 9)
-  console.log('Published at ', (new Date(hour, minute, second, millisecond)).toLocaleString(), packet, '\n')
-  console.log('Root: ', message.root, '\n')
-  return message.root
+    console.log('....')
+    const trytes = asciiToTrytes(JSON.stringify(packet))
+    console.log('...')
+    const message = Mam.create(mamState, trytes)
+    console.log('..')
+    mamState = message.state
+    console.log('.')
+    await Mam.attach(message.payload, message.address, 3, 9)
+    console.log('Published at ', Date().toLocaleString(), packet, '\n')
+    console.log('Root: ', message.root, '\n')
+    return message.root
 }
 
 const publishAll = async () => {
   console.log('Publishing to IOTA...')
   const root = await publish({
     message: 'Microsource toggled / Islanding toggled',
-    timestamp: (new Date(hour, minute, second, millisecond)).toLocaleString(),
+    timestamp: (new Date()).toLocaleString(),
     'remark': trig  //insert variable depending on commands
   })
   return root
@@ -37,7 +40,7 @@ const publishAll = async () => {
 //callback
 const logData = data => {
   if (trig == 4){
-    sd.writeSync(0)
+    SD.writeSync(1)
     //Protecc.Island()
   }
 }
@@ -55,6 +58,6 @@ island.watch((err, value) => {
       var command
       result.messages.forEach(message => command =  JSON.parse(trytesToAscii(message)))
       console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`)
-      console.log(new Date(hour, minute, second, millisecond)).toLocaleString()
+      console.log(new Date()).toLocaleString()
     })
 })
