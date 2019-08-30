@@ -22,7 +22,7 @@ const publish = async packet => {
     mamState = message.state
     console.log('.')
     await Mam.attach(message.payload, message.address, 3, 9)
-    console.log('Published at ', (new Date(hour, minute, second, millisecond)).toLocaleString(), packet, '\n')
+    console.log('Published at ', (new Date()).toLocaleString(), packet, '\n')
     console.log('Root: ', message.root, '\n')
     return message.root
 }
@@ -31,7 +31,7 @@ const publishAll = async () => {
   console.log('Publishing to IOTA...')
   const root = await publish({
     message: 'Microsource toggled / Islanding toggled',
-    timestamp: (new Date(hour, minute, second, millisecond)).toLocaleString(),
+    timestamp: (new Date()).toLocaleString(),
     'remark': trig  //insert variable depending on commands
   })
   return root
@@ -58,6 +58,6 @@ island.watch((err, value) => {
       var command
       result.messages.forEach(message => command =  JSON.parse(trytesToAscii(message)))
       console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`)
-      console.log(new Date(hour, minute, second, millisecond)).toLocaleString()
+      console.log(new Date()).toLocaleString()
     })
 })
