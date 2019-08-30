@@ -58,4 +58,3 @@ island.watch((err, value) => {
       console.log(new Date()).toLocaleString()
     })
   })
-})
