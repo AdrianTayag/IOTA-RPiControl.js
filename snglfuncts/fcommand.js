@@ -1,7 +1,7 @@
 const Gpio = require('onoff').Gpio
 const island = new Gpio(23, 'in', 'both')
 const sd = new Gpio(10, 'out')
-var trig = 0
+var trig
 sd.writeSync(1)
 
 const Mam = require('../lib/mam.client.js')
@@ -19,7 +19,7 @@ const publish = async packet => {
   const message = Mam.create(mamState, trytes)
   mamState = message.state
   await Mam.attach(message.payload, message.address, 3, 9)
-  console.log('Published at ', Date(hour, minute, second, millisecond).toLocaleString(), packet, '\n')
+  console.log('Published at ', (new Date(hour, minute, second, millisecond)).toLocaleString(), packet, '\n')
   console.log('Root: ', message.root, '\n')
   return message.root
 }
@@ -31,7 +31,6 @@ const publishAll = async () => {
     timestamp: (new Date(hour, minute, second, millisecond)).toLocaleString(),
     'remark': trig  //insert variable depending on commands
   })
-  console.log('.')
   return root
 }
 
