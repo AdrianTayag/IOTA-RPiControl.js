@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-    "start": ""concurrently \"cd files && node Commands_MAMPublishFetch.js\" \"cd files && node Protecc.js\""
   },
   "repository": {
     "type": "git",
