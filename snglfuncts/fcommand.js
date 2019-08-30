@@ -4,6 +4,7 @@ const SD = new Gpio(10, 'out')
 
 var trig
 
+SD.writeSync(1)
 const Mam = require('../lib/mam.client.js')
 const { asciiToTrytes, trytesToAscii } = require('@iota/converter')
 const mode = 'public'
@@ -36,7 +37,7 @@ const publishAll = async () => {
 //callback
 const logData = data => {
   if (trig == 4){
-    SD.writeSync(1)
+    SD.writeSync(0)
     //Protecc.Island()
   }
 }

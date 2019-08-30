@@ -17,4 +17,4 @@ function respondA (current) {
   console.log(y)
 }
 
-setInterval(measure, 1000)
+setInterval(measure, 500)
