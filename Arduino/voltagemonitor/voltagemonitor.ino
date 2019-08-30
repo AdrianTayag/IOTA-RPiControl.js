@@ -14,11 +14,11 @@ void loop() {
     but = 1;
     Serial.println("button pressed.");
   }
-  if (but == 1 && voltage == 5.0){
+  if (but == 1 && voltage > 3.0){
     Serial.println(timer);
   }
   if (but == 1) {
-    timer = timer + 10;
+    timer = timer + 1;
   }
-  delay(10);
+  delay(100);
 }
