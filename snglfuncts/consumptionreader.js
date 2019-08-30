@@ -25,6 +25,7 @@ function respondA (current) {
     csvWriter.writeRecords(records)       // returns a promise
       .then(() => {
         console.log('Done saving.')
+      })
   }
   z = z+1
 }
