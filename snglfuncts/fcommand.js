@@ -71,7 +71,7 @@ island.watch((err, value) => {
     throw err
   }
   console.log('Island pressed')
-  var record = setInterval(measure, 500)
+  //var record = setInterval(measure, 500)
   trig = 4
   publishAll()
     .then(async root => {
@@ -81,7 +81,7 @@ island.watch((err, value) => {
       result.messages.forEach(message => command =  JSON.parse(trytesToAscii(message)))
       console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`)
       console.log(new Date(hour, minute, second, millisecond)).toLocaleString()
-      clearInterval(record)
-      csvWriter.writeRecords(power)
+      //clearInterval(record)
+      //csvWriter.writeRecords(power)
     })
 })
