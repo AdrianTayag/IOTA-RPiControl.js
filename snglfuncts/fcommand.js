@@ -45,7 +45,7 @@ island.watch((err, value) => {
     throw err
   }
   console.log('Island pressed at')
-  console.log((new Date()).toLocaleString())
+  console.log(new Date()).toLocaleString()
   trig = 4
   publishAll()
     .then(async root => {
