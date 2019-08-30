@@ -46,7 +46,6 @@ island.watch((err, value) => {
   }
   console.log('Island pressed at')
   console.log((new Date()).toLocaleString())
-  var record = setInterval(measure, 500)
   trig = 4
   publishAll()
     .then(async root => {
