@@ -1,7 +1,8 @@
 const Gpio = require('onoff').Gpio
 const island = new Gpio(23, 'in', 'both')
 const sd = new Gpio(10, 'out')
-var trig
+var trig = 0
+sd.writeSync(1)
 
 const Mam = require('../lib/mam.client.js')
 const { asciiToTrytes, trytesToAscii } = require('@iota/converter')
@@ -41,8 +42,6 @@ const logData = data => {
     //Protecc.Island()
   }
 }
-
-sd.writeSync(1)
 
 island.watch((err, value) => {
   if (err) {
