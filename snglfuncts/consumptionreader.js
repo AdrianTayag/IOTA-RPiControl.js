@@ -11,7 +11,8 @@ function measure() {
   ina219.getBusVoltage_V(respondV)
   ina219.getCurrent_mA(respondA)
   z = z+1
-  if (z == 60) {
+  console.log(z)
+  if (z > 60) {
     clearInterval(record)
     csvWriter.writeRecords(records)       // returns a promise
       .then(() => {
