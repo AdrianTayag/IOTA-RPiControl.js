@@ -1,7 +1,6 @@
 const Gpio = require('onoff').Gpio
 const island = new Gpio(23, 'in', 'both')
-const SD = new Gpio(10, 'out')
-SD.writeSync(1)
+const sd = new Gpio(10, 'out')
 var trig
 
 const Mam = require('../lib/mam.client.js')
@@ -31,16 +30,19 @@ const publishAll = async () => {
     timestamp: (new Date(hour, minute, second, millisecond)).toLocaleString(),
     'remark': trig  //insert variable depending on commands
   })
+  console.log('.')
   return root
 }
 
 //callback
 const logData = data => {
   if (trig == 4){
-    SD.writeSync(0)
+    sd.writeSync(0)
     //Protecc.Island()
   }
 }
+
+sd.writeSync(1)
 
 island.watch((err, value) => {
   if (err) {
