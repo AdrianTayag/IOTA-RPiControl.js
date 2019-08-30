@@ -11,9 +11,9 @@ function measure() {
   ina219.getCurrent_mA(respondA)
   z = z+1
   console.log(z)
-  if (z > 60) {
+  if (z == 60) {
     clearInterval(record)
-    fs.writeFile('trial.csv', (err) => {
+    fs.writeFile('trial.csv', power, (err) => {
       if (err) throw err
       console.log('The file has been saved!')
     })
