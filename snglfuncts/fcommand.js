@@ -1,5 +1,5 @@
 const Gpio = require('onoff').Gpio
-const island = new Gpio(23, 'in', 'both')
+const island = new Gpio(23, 'in', 'both', {debounceTimeout: 10})
 const SD = new Gpio(10, 'out')
 const ina219 = require('ina219')
 ina219.init(0x45)
@@ -66,7 +66,7 @@ island.watch((err, value) => {
     throw err
   }
   console.log('Island pressed at')
-  console.log(new Date()).toLocaleString()
+  console.log((new Date()).toLocaleString())
   var record = setInterval(measure, 500)
   trig = 4
   publishAll()
