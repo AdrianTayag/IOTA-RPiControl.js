@@ -10,6 +10,8 @@ const Z2 = new Gpio(8, 'in', 'both')
 //Islanding Button
 const ISL = new Gpio(24, 'in', 'both')
 
+var d = new Date()
+
 const PCstatus = function() {
   var br1, br2, br3, br4, pcc1, sd1
   br1 = B1.readSync()
@@ -38,30 +40,44 @@ const runtime = function() {
     if (err) {
       throw err
     }
+    d = new Date()
+    console.log(d)
     console.log("ISL Pressed.")
     SD.writeSync(value)
+    d = new Date()
+    console.log(d)
   })
   //Fault Watcher
   Z1.watch((err, value) => {
     if (err) {
       throw err
     }
+    d = new Date()
+    console.log(d)
     console.log("Z1 Pressed.")
     PCC.writeSync(value)
     Island(value)
+    d = new Date()
+    console.log(d)
   })
 
   Z2.watch((err, value) => {
     if (err) {
       throw err
     }
+    d = new Date()
+    console.log(d)
     console.log("Z2 Pressed.")
     SD.writeSync(value)
     B1.writeSync(value)
+    d = new Date()
+    console.log(d)
   })
 }
 
 runtime()
+
+var x = PCstatus()
 
 module.exports = {
   PCstatus,
