@@ -12,6 +12,7 @@ void loop() {
   float voltage= sensorValue * (5.0 / 1023.0);
   if (button == HIGH && but == 0) {
     but = 1;
+    Serial.println("button pressed.");
   }
   if (but == 1 && voltage == 5.0){
     Serial.println(timer);

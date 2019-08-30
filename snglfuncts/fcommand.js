@@ -1,10 +1,9 @@
 const Gpio = require('onoff').Gpio
 const island = new Gpio(23, 'in', 'both')
 const SD = new Gpio(10, 'out')
-
+SD.writeSync(1)
 var trig
 
-SD.writeSync(1)
 const Mam = require('../lib/mam.client.js')
 const { asciiToTrytes, trytesToAscii } = require('@iota/converter')
 const mode = 'public'
@@ -15,13 +14,14 @@ const mamExplorerLink = `https://mam-explorer.firebaseapp.com/?provider=${encode
 let mamState = Mam.init(provider)
 // Publish to tangle
 const publish = async packet => {
-    const trytes = asciiToTrytes(JSON.stringify(packet))
-    const message = Mam.create(mamState, trytes)
-    mamState = message.state
-    await Mam.attach(message.payload, message.address, 3, 9)
-    console.log('Published at ', Date(hour, minute, second, millisecond).toLocaleString(), packet, '\n')
-    console.log('Root: ', message.root, '\n')
-    return message.root
+  console.log('.....')
+  const trytes = asciiToTrytes(JSON.stringify(packet))
+  const message = Mam.create(mamState, trytes)
+  mamState = message.state
+  await Mam.attach(message.payload, message.address, 3, 9)
+  console.log('Published at ', Date(hour, minute, second, millisecond).toLocaleString(), packet, '\n')
+  console.log('Root: ', message.root, '\n')
+  return message.root
 }
 
 const publishAll = async () => {
