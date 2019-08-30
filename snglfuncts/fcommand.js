@@ -1,7 +1,13 @@
 const Gpio = require('onoff').Gpio
 const island = new Gpio(23, 'in', 'both')
 const SD = new Gpio(10, 'out')
-
+const ina219 = require('ina219')
+ina219.init(0x45)
+ina219.calibrate32V1A(function(){ console.log("RPi Tracker calibrated")})
+const createCsvWriter = require('csv-writer').createObjectCsvWriter
+const csvWriter = createCsvWriter({ path: './Measurement.csv' })
+const power = ["Measured"]
+var x, y
 var trig
 
 const Mam = require('../lib/mam.client.js')
@@ -14,13 +20,9 @@ const mamExplorerLink = `https://mam-explorer.firebaseapp.com/?provider=${encode
 let mamState = Mam.init(provider)
 // Publish to tangle
 const publish = async packet => {
-    console.log('....')
     const trytes = asciiToTrytes(JSON.stringify(packet))
-    console.log('...')
     const message = Mam.create(mamState, trytes)
-    console.log('..')
     mamState = message.state
-    console.log('.')
     await Mam.attach(message.payload, message.address, 3, 9)
     console.log('Published at ', (new Date()).toLocaleString(), packet, '\n')
     console.log('Root: ', message.root, '\n')
@@ -45,11 +47,27 @@ const logData = data => {
   }
 }
 
+function measure() {
+  ina219.getBusVoltage_V(respondV)
+  ina219.getCurrent_mA(respondA)
+}
+
+function respondV (voltage) {
+  x = voltage
+}
+
+function respondA (current) {
+  y = current * x //milliwatts
+  power.push(y)
+}
+
 island.watch((err, value) => {
   if (err) {
     throw err
   }
-  console.log('Island pressed')
+  console.log('Island pressed at')
+  console.log(new Date()).toLocaleString()
+  var record = setInterval(measure, 500)
   trig = 4
   publishAll()
     .then(async root => {
@@ -59,5 +77,10 @@ island.watch((err, value) => {
       result.messages.forEach(message => command =  JSON.parse(trytesToAscii(message)))
       console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`)
       console.log(new Date()).toLocaleString()
+      clearInterval(record)
+      csvWriter.writeRecords(records)       // returns a promise
+        .then(() => {
+          console.log('Done saving.')
+        })
     })
 })

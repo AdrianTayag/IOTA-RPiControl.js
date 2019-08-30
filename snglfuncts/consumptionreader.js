@@ -16,5 +16,3 @@ function respondA (current) {
   y = current * x //milliwatts
   console.log(y)
 }
-
-setInterval(measure, 500)
