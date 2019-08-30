@@ -22,7 +22,7 @@ const publish = async packet => {
     mamState = message.state
     console.log('.')
     await Mam.attach(message.payload, message.address, 3, 9)
-    console.log('Published at ', Date(hour, minute, second, millisecond).toLocaleString(), packet, '\n')
+    console.log('Published at ', (new Date(hour, minute, second, millisecond)).toLocaleString(), packet, '\n')
     console.log('Root: ', message.root, '\n')
     return message.root
 }
