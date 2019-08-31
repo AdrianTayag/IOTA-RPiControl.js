@@ -5,10 +5,10 @@ const PCC = new Gpio(22, 'out')
 const SD = new Gpio(10, 'out')
 const B1 = new Gpio(9, 'out')
 //Zone Fault Triggers
-const Z1 = new Gpio(25, 'in', 'both')
-const Z2 = new Gpio(8, 'in', 'both')
+const Z1 = new Gpio(25, 'in', 'both', {debounceTimeout: 10})
+const Z2 = new Gpio(8, 'in', 'both', {debounceTimeout: 10})
 //Islanding Button
-const ISL = new Gpio(24, 'in', 'both')
+const ISL = new Gpio(24, 'in', 'both', {debounceTimeout: 10})
 
 var d = new Date()
 
