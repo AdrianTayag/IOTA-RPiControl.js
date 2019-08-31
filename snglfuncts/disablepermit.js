@@ -35,19 +35,15 @@ const trigger = function(x){
   }}
 //measures MS outputs
 const status = function() {
-  console.log("reporting")
   b1 = ms1.readSync()
   b2 = ms2.readSync()
   b3 = ms3.readSync()
-
   var stats = {
     message: 'Microsource Controller Report',
-    timestamp: (new Date()).toLocaleString(),
-    'MS Breakers': {
-      'MS-1': b1,
-      'MS-2': b2,
-      'MS-3': b3,
-    },
+    timestamp: ()(new Date()).toLocaleString()),
+    'MS-1': b1,
+    'MS-2': b2,
+    'MS-3': b3
   }
   console.log(stats)
   return stats
