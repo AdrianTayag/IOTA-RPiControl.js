@@ -28,7 +28,7 @@ const PCstatus = function() {
   sd1 = SD.readSync()
   var stats = {
     message: 'Protection Coordinator Report',
-    timestamp: (new Date()).toLocaleString(),
+    timestamp: ((new Date()).toLocaleString()),
     'SAFETY': {
       'B1': br1,
       'B2': br2,

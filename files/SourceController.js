@@ -49,7 +49,7 @@ const status = function() {
 
   var stats = {
     message: 'Protection Coordinator Report',
-    timestamp: (new Date()).toLocaleString()
+    timestamp: ((new Date()).toLocaleString()),
     'MS1_V': x[0],
     'MS1_P': y[0],
     'MS2_V': x[1],
