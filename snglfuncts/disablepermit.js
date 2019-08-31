@@ -41,16 +41,18 @@ const status = function() {
   b3 = ms3.readSync()
 
   var stats = {
-    message: 'Protection Coordinator Report',
+    message: 'Microsource Controller Report',
     timestamp: (new Date()).toLocaleString(),
     'MS Breakers': {
       'MS-1': b1,
       'MS-2': b2,
       'MS-3': b3,
-    }
+    },
   }
+  console.log(stats)
   return stats
 }
+
 module.exports = {
   status,
   trigger
