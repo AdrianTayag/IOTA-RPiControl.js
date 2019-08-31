@@ -18,11 +18,10 @@ const publish = async packet => {
     const trytes = asciiToTrytes(JSON.stringify(packet))
     const message = Mam.create(mamState, trytes)
     mamState = message.state
-    // Attach the payload
     await Mam.attach(message.payload, message.address, 3, 9)
-    d = new Date()
-    console.log('Published at ', d, packet, '\n');
-    console.log('Root: ', message.root, '\n');
+    var d3 = new Date()
+    console.log('Published at ', d3, packet, '\n')
+    console.log('Root: ', message.root, '\n')
     return message.root
 }
 
@@ -32,7 +31,7 @@ const publishAll = async () => {
   stat2 = SC.status()
   stat['PC'] = stats1
   stat['MS'] = stats2
-  const root = await publish({stat}) //Stats combined
+  const root = await publish(stat) //Stats combined
   return root
 }
 
