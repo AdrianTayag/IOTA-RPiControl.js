@@ -35,49 +35,45 @@ const Island = function(x) {
   SD.writeSync(x)
 }
 
-const runtime = function() {
-  ISL.watch((err,value) =>{
-    if (err) {
-      throw err
-    }
-    d = new Date()
-    console.log(d)
-    console.log("ISL Pressed.")
-    SD.writeSync(value)
-    d = new Date()
-    console.log(d)
-  })
-  //Fault Watcher
-  Z1.watch((err, value) => {
-    if (err) {
-      throw err
-    }
-    d = new Date()
-    console.log(d)
-    console.log("Z1 Pressed.")
-    PCC.writeSync(value)
-    Island(value)
-    d = new Date()
-    console.log(d)
-  })
+ISL.watch((err,value) =>{
+  if (err) {
+    throw err
+  }
+  d = new Date()
+  console.log(d)
+  console.log("ISL Pressed.")
+  SD.writeSync(value)
+  d = new Date()
+  console.log(d)
+})
+//Fault Watcher
+Z1.watch((err, value) => {
+  if (err) {
+    throw err
+  }
+  d = new Date()
+  console.log(d)
+  console.log("Z1 Pressed.")
+  PCC.writeSync(value)
+  Island(value)
+  d = new Date()
+  console.log(d)
+})
 
-  Z2.watch((err, value) => {
-    if (err) {
-      throw err
-    }
-    d = new Date()
-    console.log(d)
-    console.log("Z2 Pressed.")
-    SD.writeSync(value)
-    B1.writeSync(value)
-    d = new Date()
-    console.log(d)
-  })
-}
+Z2.watch((err, value) => {
+  if (err) {
+  throw err
+  }
+  d = new Date()
+  console.log(d)
+  console.log("Z2 Pressed.")
+  SD.writeSync(value)
+  B1.writeSync(value)
+  d = new Date()
+  console.log(d)
+  PCstatus()
+})
 
-runtime()
-
-var x = PCstatus()
 
 module.exports = {
   PCstatus,
