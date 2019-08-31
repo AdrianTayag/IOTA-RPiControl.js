@@ -49,7 +49,6 @@ const status = function() {
       'MS-3': b3,
     }
   }
-  console.log(stats)
   return stats
 }
 module.exports = {

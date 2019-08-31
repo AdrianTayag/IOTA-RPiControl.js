@@ -71,7 +71,6 @@ Z2.watch((err, value) => {
   B1.writeSync(value)
   d = new Date()
   console.log(d)
-  PCstatus()
 })
 
 
