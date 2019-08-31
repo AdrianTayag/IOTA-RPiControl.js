@@ -34,7 +34,7 @@ const PCstatus = function() {
 const Island = function(x) {
   SD.writeSync(x)
 }
-
+/*
 ISL.watch((err,value) =>{
   if (err) {
     throw err
@@ -72,7 +72,7 @@ Z2.watch((err, value) => {
   d = new Date()
   console.log(d)
 })
-
+*/
 
 module.exports = {
   PCstatus,
