@@ -40,7 +40,7 @@ const status = function() {
   b3 = ms3.readSync()
   var stats = {
     message: 'Microsource Controller Report',
-    timestamp: ()(new Date()).toLocaleString()),
+    timestamp: ((new Date()).toLocaleString()),
     'MS-1': b1,
     'MS-2': b2,
     'MS-3': b3

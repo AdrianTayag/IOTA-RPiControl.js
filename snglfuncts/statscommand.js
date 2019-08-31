@@ -3,7 +3,6 @@ let SC = require ("./disablepermit.js")
 var d = new Date()
 var stat1 = {}
 var stat2 = {}
-var stat = {}
 
 const Mam = require('../lib/mam.client.js')
 const { asciiToTrytes, trytesToAscii } = require('@iota/converter')
@@ -29,10 +28,12 @@ const publishAll = async () => {
   console.log('Publishing to IOTA...')
   stat1 = Protecc.PCstatus()
   stat2 = SC.status()
-  stat['PC'] = stats1
-  stat['MS'] = stats2
-  console.log(stat)
-  const root = await publish(stat) //Stats combined
+  const root = await publish({
+    message: 'Microsource toggled / Islanding toggled',
+    timestamp: ((new Date()).toLocaleString()),
+    'PC': stat1,
+    'MS': stat2  //insert variable depending on commands
+  }) //Stats combined
   return root
 }
 
