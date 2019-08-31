@@ -31,6 +31,7 @@ const publishAll = async () => {
   stat2 = SC.status()
   stat['PC'] = stats1
   stat['MS'] = stats2
+  console.log(stat)
   const root = await publish(stat) //Stats combined
   return root
 }
@@ -48,5 +49,5 @@ publishAll()
     var status
     result.messages.forEach(message => status =  JSON.parse(trytesToAscii(message)))
     console.log(status)
-    console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`);
+    console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`)
   })
