@@ -46,7 +46,7 @@ const logData = data => {
 console.log(d)
 publishAll()
   .then(async root => {
-    const result = await Mam.fetch(root, mode)
+    const result = await Mam.fetch(root, mode,null,logData)
     var status
     result.messages.forEach(message => status =  JSON.parse(trytesToAscii(message)))
     console.log(status)
