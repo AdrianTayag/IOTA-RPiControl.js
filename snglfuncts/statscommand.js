@@ -1,6 +1,5 @@
 let Protecc = require ("./faults.js")
 let SC = require ("./disablepermit.js")
-var d = new Date()
 var stat1 = {}
 var stat2 = {}
 
@@ -17,15 +16,16 @@ const publish = async packet => {
     const trytes = asciiToTrytes(JSON.stringify(packet))
     const message = Mam.create(mamState, trytes)
     mamState = message.state
+    var d2 = new Date()
+    console.log('Attaching... ', d2.getSeconds(), d2.getMilliseconds())
     await Mam.attach(message.payload, message.address, 3, 9)
     var d3 = new Date()
-    console.log('Published at ', d3, packet, '\n')
-    console.log('Root: ', message.root, '\n')
+    console.log('Published... ', d3.getSeconds(), d3.getMilliseconds(), packet, '\n')
+    //console.log('Root: ', message.root, '\n')
     return message.root
 }
 
 const publishAll = async () => {
-  console.log('Publishing to IOTA...')
   stat1 = Protecc.PCstatus()
   stat2 = SC.status()
   const root = await publish({
@@ -39,16 +39,18 @@ const publishAll = async () => {
 
 // Callback used to pass data out of the fetch
 const logData = data => {
-  d = new Date()
-  console.log('Fetched and parsed at ', d, '\n', JSON.parse(trytesToAscii(data)), '\n')
+  console.log('...')
 }
 
-console.log(d)
+var d = new Date()
+console.log('Starting ', d.getSeconds(), d.getMilliseconds())
 publishAll()
   .then(async root => {
     const result = await Mam.fetch(root, mode,null,logData)
-    var status
-    result.messages.forEach(message => status =  JSON.parse(trytesToAscii(message)))
-    console.log(status)
-    console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`)
+    d1 = new Date()
+    console.log('Fetched... ', d1.getSeconds(), d1.getMilliseconds(), '\n', JSON.parse(trytesToAscii(data)), '\n')
+    //var status
+    //result.messages.forEach(message => status =  JSON.parse(trytesToAscii(message)))
+    //console.log(status)
+    //console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`)
   })

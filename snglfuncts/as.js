@@ -1,5 +1,5 @@
 d = new Date()
-console.log(d)
+console.log(d.getSeconds(), d.getMilliseconds())
 console.log('wat')
 console.log('wat')
 console.log('wat')
