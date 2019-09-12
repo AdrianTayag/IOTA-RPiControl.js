@@ -11,7 +11,7 @@ function measure() {
   ina219.getCurrent_mA(respondA)
   z = z+1
   console.log(z)
-  if (z == 80) {
+  if (z == 600) {
     clearInterval(record)
     fs.writeFile('trial.csv', power, (err) => {
       if (err) throw err
@@ -30,4 +30,4 @@ function respondA (current) {
   console.log(y)
 }
 
-var record = setInterval(measure, 500)
+var record = setInterval(measure, 100)
