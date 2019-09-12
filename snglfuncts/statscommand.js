@@ -20,7 +20,7 @@ const publish = async packet => {
     console.log('Attaching... ', d2.getSeconds(), d2.getMilliseconds())
     await Mam.attach(message.payload, message.address, 3, 9)
     var d3 = new Date()
-    console.log('Published... ', d3.getSeconds(), d3.getMilliseconds(), packet, '\n')
+    console.log('Published... ', d3.getSeconds(), d3.getMilliseconds(), '\n')
     //console.log('Root: ', message.root, '\n')
     return message.root
 }
@@ -48,7 +48,7 @@ publishAll()
   .then(async root => {
     const result = await Mam.fetch(root, mode,null,logData)
     d1 = new Date()
-    console.log('Fetched... ', d1.getSeconds(), d1.getMilliseconds(), '\n', JSON.parse(trytesToAscii(data)), '\n')
+    console.log('Fetched... ', d1.getSeconds(), d1.getMilliseconds())
     //var status
     //result.messages.forEach(message => status =  JSON.parse(trytesToAscii(message)))
     //console.log(status)
