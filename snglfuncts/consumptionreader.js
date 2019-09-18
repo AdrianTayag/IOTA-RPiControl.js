@@ -13,8 +13,8 @@ var z = 0
 function measure() {
   ina219.getBusVoltage_V(respondV)
   ina219.getCurrent_mA(respondA)
-  ina219_1.getBusVoltage_V(respondV)
-  ina219_1.getCurrent_mA(respondA_1)
+  //ina219_1.getBusVoltage_V(respondV)
+  //ina219_1.getCurrent_mA(respondA_1)
   z = z+1
   console.log(z)
   if (z == 600) {
