@@ -4,6 +4,7 @@ const fs = require('fs')
 ina219.init(0x45)
 ina219_1.init(0x44)
 ina219.calibrate32V1A(function(){ console.log("RPi Tracker calibrated")})
+ina219_1.calibrate32V1A(function(){ console.log("RPi Tracker 2 calibrated")})
 const power = []
 const power_1 = []
 var x, y
@@ -32,7 +33,7 @@ function respondV (voltage) {
 function respondA (current) {
   y = current * x //milliwatts
   power.push(y)
-  console.log('def ', y)
+  console.log(y)
 }
 
 function respondA_1 (current) {
