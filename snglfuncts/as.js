@@ -1,4 +1,4 @@
-d = new Date()
+/* d = new Date()
 console.log(d.getSeconds(), d.getMilliseconds())
 console.log('wat')
 console.log('wat')
@@ -33,4 +33,14 @@ const stats2 = {
 
 stat['PC'] = stats1
 stat['MS'] = stats2
-console.log(stat)
+console.log(stat) */
+
+var ping = require('ping');
+
+var hosts = ['https://nodes.devnet.iota.org'];
+hosts.forEach(function(host){
+    ping.sys.probe(host, function(isAlive){
+        var msg = isAlive ? 'host ' + host + ' is alive' : 'host ' + host + ' is dead';
+        console.log(msg);
+    });
+});

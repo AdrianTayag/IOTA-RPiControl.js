@@ -21,5 +21,5 @@ void loop() {
   if (but == 1) {
     timer = timer + 1;
   }
-  delay(1);
+  delay(100);
 }
