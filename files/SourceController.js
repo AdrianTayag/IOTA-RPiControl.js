@@ -1,4 +1,5 @@
 //Node.js GPIO Script for Protection Manager, not needed to be concurrently run.
+//Removed INA219 Power Monitoring.
 const Gpio = require('onoff').Gpio
 //Relay
 const ms1 = new Gpio(13, 'out')
@@ -47,22 +48,6 @@ const status = function() {
   }
   console.log(stats)
   return stats
-}
-
-module.exports = {
-  status,
-  trigger
-}
-
-//callbacks for ina219
-function respondV (voltage) {
-  x[i] = voltage
-  i += 1
-}
-
-function respondA (current) {
-  y[o] = current * x[o] //milliwatts
-  o += 1
 }
 
 module.exports = {
