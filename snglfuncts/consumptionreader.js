@@ -1,4 +1,5 @@
 const ina219 = require('ina219')
+const ina219_1 = require('ina219')
 const fs = require('fs')
 ina219.init(0x45)
 ina219.calibrate32V1A(function(){ console.log("RPi Tracker calibrated")})
