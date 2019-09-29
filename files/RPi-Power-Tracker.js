@@ -1,23 +1,33 @@
 const ina219 = require('ina219')
+const fs = require('fs')
 ina219.init(0x45)
 ina219.calibrate32V1A(function(){ console.log("RPi Tracker calibrated")})
-var i = 1
-while (i == 0) {
-  ina219.getBustVoltage_V(respondV)
+const power = []
+var x, y
+var z = 0
+
+function measure() {
+  ina219.getBusVoltage_V(respondV)
   ina219.getCurrent_mA(respondA)
-}
-
-async function respondV (voltage) {
-  x[i] = voltage
-}
-
-async function respondA (current) {
-  y[o] = current * x[o] //milliwatts
-  await sleep(2000);
-}
-
-function sleep(ms){
-    return new Promise(resolve=>{
-        setTimeout(resolve,ms)
+  z = z+1
+  console.log(z)
+  if (z == 600) {
+    clearInterval(record)
+    fs.writeFile('trial.csv', power, (err) => {
+      if (err) throw err
+      console.log('The file has been saved!')
     })
+  }
 }
+
+function respondV (voltage) {
+  x = voltage
+}
+
+function respondA (current) {
+  y = current * x //milliwatts
+  power.push(y)
+  console.log(y)
+}
+
+var record = setInterval(measure, 100)
