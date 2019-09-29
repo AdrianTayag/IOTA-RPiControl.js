@@ -1,4 +1,4 @@
-let Protecc = require ("./Protecc.js")
+let PC = require ("./ProtectionCoordinator.js")
 let SC = require ("./SourceController.js")
 var stat1 = {}
 var stat2 = {}
@@ -26,7 +26,7 @@ const publish = async packet => {
 }
 
 const publishAll = async () => {
-  stat1 = Protecc.PCstatus()
+  stat1 = PC.status()
   stat2 = SC.status()
   const root = await publish({
     message: 'Microsource toggled / Islanding toggled',
