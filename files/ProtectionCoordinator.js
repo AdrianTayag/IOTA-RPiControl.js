@@ -46,9 +46,14 @@ ISL.watch((err,value) =>{
   if (err) {
     throw err
   }
-  console.log("Islanding.")
-  SD.writeSync(value)
+  if (SD.readSync() == 1){
+    SD.writeSync(0)
+  }
+  else {
+    SD.writeSync(1)
+  }
 })
+
   //Fault Watcher
 Z1.watch((err, value) => {
   if (err) {
@@ -56,7 +61,7 @@ Z1.watch((err, value) => {
   }
   console.log("Z1 isolated.")
   PCC.writeSync(value)
-  Island(value)
+  SD.writeSync(value)
 })
 
 Z2.watch((err, value) => {
@@ -108,7 +113,7 @@ Z7.watch((err, value) => {
   }
   console.log("Z7 isolated.")
   PCC.writeSync(value)
-  Island(value)
+  SD.writeSync(value)
 })
 
 module.exports = {
