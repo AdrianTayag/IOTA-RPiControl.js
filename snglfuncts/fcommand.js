@@ -10,7 +10,8 @@ const provider = 'https://nodes.devnet.iota.org'
 const mamExplorerLink = `https://mam-explorer.firebaseapp.com/?provider=${encodeURIComponent(provider)}&mode=${mode}&root=`
 
 // Initialise MAM State
-let mamState = Mam.init(provider, 'ZGUZDLLCSKMHHFTYLATBVSADVPKEGJOUOOJXAMGEOGKKNWWEBKPEOJKGYPFLHMWLFXKRQRYLL9QQRPGKR')
+let mamState = Mam.init(provider)
+//, 'ZGUZDLLCSKMHHFTYLATBVSADVPKEGJOUOOJXAMGEOGKKNWWEBKPEOJKGYPFLHMWLFXKRQRYLL9QQRPGKR'
 // Publish to tangle
 const publish = async packet => {
     const trytes = asciiToTrytes(JSON.stringify(packet))
