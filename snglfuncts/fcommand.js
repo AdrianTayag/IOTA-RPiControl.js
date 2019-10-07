@@ -1,5 +1,5 @@
 const Gpio = require('onoff').Gpio
-const island = new Gpio(23, 'in', 'both', {debounceTimeout: 10})
+const island = new Gpio(23, 'in', 'rising', {debounceTimeout: 10})
 let Islanding = require("./islanding.js") //Island
 var trig
 
