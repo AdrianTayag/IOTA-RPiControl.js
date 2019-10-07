@@ -20,3 +20,5 @@ const Island = function() {
 module.exports = {
   Island
 }
+
+Island()

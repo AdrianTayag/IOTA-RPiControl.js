@@ -48,6 +48,7 @@ const logData = data => {
   console.log('...')
 }
 
+var toggle = 0
 island.watch((err, value) => {
   if (err) {
     throw err
