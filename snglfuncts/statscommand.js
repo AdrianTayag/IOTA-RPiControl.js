@@ -49,6 +49,7 @@ publishAll()
     const result = await Mam.fetch(root, mode,null,logData)
     d1 = new Date()
     console.log('Fetched... ', d1.getSeconds(), d1.getMilliseconds())
+    console.log(root)
     //var status
     //result.messages.forEach(message => status =  JSON.parse(trytesToAscii(message)))
     //console.log(status)

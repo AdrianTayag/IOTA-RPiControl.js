@@ -1,6 +1,6 @@
 const Gpio = require('onoff').Gpio
 const island = new Gpio(23, 'in', 'rising', {debounceTimeout: 10})
-const SD = new Gpio(10, 'out')
+let Islanding = require("./islanding.js") //Island
 var trig
 
 const Mam = require('../lib/mam.client.js')
@@ -34,12 +34,11 @@ const publishAll = async () => {
 }
 
 //callback
-const logData = data => {
-  if (trig == 4){
-    SD.writeSync(1)
-    //Protecc.Island()
-    var d2 = new Date()
-    console.log(d2)
+const remark = function(x) {
+  if (x == 4){
+    Islanding.Island()
+  }
+  else {
   }
 }
 
@@ -47,16 +46,17 @@ island.watch((err, value) => {
   if (err) {
     throw err
   }
-  console.log('Island pressed at')
   var d = new Date()
-  console.log(d)
+  console.log('Islanding... ', d.getSeconds(), d.getMilliseconds())
   trig = 4
   publishAll()
     .then(async root => {
-      console.log('fetching...')
       const result = await Mam.fetch(root, mode, null, logData)
+      var d4 = new Date()
+      console.log('Fetched... ', d4.getSeconds(), d4.getMilliseconds())
       var command
       result.messages.forEach(message => command =  JSON.parse(trytesToAscii(message)))
-      console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`)
+      toggle = command.remark
+      remark(toggle)
+      //console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`)
     })
-  })

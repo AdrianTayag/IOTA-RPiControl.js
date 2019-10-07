@@ -109,6 +109,7 @@ MS3t.watch((err, value) => {
       result.messages.forEach(message => command =  JSON.parse(trytesToAscii(message)))
       toggle = command.remark
       remark(toggle)
+      console.log(root)
       //console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`)
     })
 })
