@@ -6,9 +6,6 @@ const SD = new Gpio(10, 'out') //assign new pin + add OR Gate
 
 //Islanding/Connecting Function
 const Island = function() {
-  if (err) {
-    throw err
-  }
   if (SD.readSync() == 1){
     SD.writeSync(0)
   }
@@ -20,5 +17,3 @@ const Island = function() {
 module.exports = {
   Island
 }
-
-Island()
