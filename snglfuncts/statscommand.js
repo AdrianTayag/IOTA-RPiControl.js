@@ -8,7 +8,7 @@ const { asciiToTrytes, trytesToAscii } = require('@iota/converter')
 const mode = 'public'
 const provider = 'https://nodes.devnet.iota.org'
 const mamExplorerLink = `https://mam-explorer.firebaseapp.com/?provider=${encodeURIComponent(provider)}&mode=${mode}&root=`
-let mamState = Mam.init(provider)
+let mamState = Mam.init(provider, 'PWFNYIZBTOWDYLVKFKMSSPBLZRAQOISTDBEOMRDOISKJPKUKZWSUGOHMRPW9ZBHTVCISXLMJOLRAIDFYJ')
 
 
 // Publish to tangle
