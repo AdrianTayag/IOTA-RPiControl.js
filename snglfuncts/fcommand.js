@@ -16,15 +16,16 @@ const publish = async packet => {
     const trytes = asciiToTrytes(JSON.stringify(packet))
     const message = Mam.create(mamState, trytes)
     mamState = message.state
+    var d2 = new Date()
+    console.log('Attaching... ', d2.getSeconds(), d2.getMilliseconds())
     await Mam.attach(message.payload, message.address, 3, 9)
     var d3 = new Date()
-    console.log('Published at ', d3, packet, '\n')
-    console.log('Root: ', message.root, '\n')
+    console.log('Published... ', d3.getSeconds(), d3.getMilliseconds(), packet, '\n')
     return message.root
 }
 
 const publishAll = async () => {
-  console.log('Publishing to IOTA...')
+  //console.log('Publishing to IOTA...')
   const root = await publish({
     message: 'Microsource toggled / Islanding toggled',
     timestamp: ((new Date()).toLocaleString()),
@@ -40,6 +41,10 @@ const remark = function(x) {
   }
   else {
   }
+}
+
+const logData = data => {
+  console.log('...')
 }
 
 island.watch((err, value) => {
