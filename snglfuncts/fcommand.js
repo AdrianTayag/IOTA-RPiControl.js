@@ -61,4 +61,4 @@ island.watch((err, value) => {
       cosole.log(root)
       //console.log(`Verify with MAM Explorer:\n${mamExplorerLink}${root}\n`)
     })
-}
+})
