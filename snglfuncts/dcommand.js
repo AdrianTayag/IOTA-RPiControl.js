@@ -1,9 +1,9 @@
 let SC = require ('./disablepermit.js')
 
 const Gpio = require('onoff').Gpio
-const MS1t = new Gpio(14, 'in', 'both')
-const MS2t = new Gpio(15, 'in', 'both')
-const MS3t = new Gpio(18, 'in', 'both')
+const MS1t = new Gpio(14, 'in', 'both', {debounceTimeout: 10})
+const MS2t = new Gpio(15, 'in', 'both', {debounceTimeout: 10})
+const MS3t = new Gpio(18, 'in', 'both', {debounceTimeout: 10})
 //const island = new Gpio(23, 'in', 'both')
 var trig
 

@@ -2,10 +2,10 @@ let SC = require ("./SourceController.js")  //status , trigger
 let Islanding = require("./Islanding.js") //Island
 
 const Gpio = require('onoff').Gpio
-const MS1t = new Gpio(14, 'in', 'rising', {debounceTimeout: 10})
-const MS2t = new Gpio(15, 'in', 'rising', {debounceTimeout: 10})
-const MS3t = new Gpio(18, 'in', 'rising', {debounceTimeout: 10})
-const ISL = new Gpio(23, 'in', 'rising', {debounceTimeout: 10})
+const MS1t = new Gpio(14, 'in', 'both', {debounceTimeout: 10})
+const MS2t = new Gpio(15, 'in', 'both', {debounceTimeout: 10})
+const MS3t = new Gpio(18, 'in', 'both', {debounceTimeout: 10})
+const ISL = new Gpio(23, 'in', 'both', {debounceTimeout: 10})
 var trig
 
 const Mam = require('../lib/mam.client.js')
